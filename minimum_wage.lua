@@ -24,7 +24,7 @@ _G.loaded = true
 
 -- // Key System (Yes, I know you can remove this, but this helps support me! :) ) // --
 loadstring(game:HttpGet('https://raw.githubusercontent.com/ZackDaQuack/blox-cash/main/keysystem.lua', true))()
-notify("Sucess!", "Your key was sucessfully validated! Now go to the cashier!", "rbxassetid://15234955230") end
+notify("Sucess!", "Your key was sucessfully validated! Now go to the cashier!", "rbxassetid://15234955230")
 
 
 -- // Hijack gui // --
