@@ -1,11 +1,5 @@
 repeat wait() until game:IsLoaded()
 
--- // Config // --
-_G.time = 4 -- // in hours // --
-_G.noprint = true -- // debug print stuff // --
-_G.supersecretkeysystembypasserdontleak = true -- // :O // --
-------------------------------------------------
-
 local autofarm_time = _G.time
 local no_print = _G.print
 local bypass_key_system = _G.supersecretkeysystembypasserdontleak
