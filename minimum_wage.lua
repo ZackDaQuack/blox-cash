@@ -1,7 +1,15 @@
 repeat wait() until game:IsLoaded()
 
+-- // Config // --
+_G.time = 4 -- // in hours // --
+_G.noprint = true -- // debug print stuff // --
+_G.supersecretkeysystembypasserdontleak = true -- // :O // --
+------------------------------------------------
+
 local autofarm_time = _G.time
 local no_print = _G.print
+local bypass_key_system = _G.supersecretkeysystembypasserdontleak
+
 
 -- // Notifier // --
 -- // I wanted to hijack bloxburg's one but i got lazy :( // --
@@ -23,8 +31,12 @@ end
 _G.loaded = true
 
 -- // Key System (Yes, I know you can remove this, but this helps support me! :) ) // --
-loadstring(game:HttpGet('https://raw.githubusercontent.com/ZackDaQuack/blox-cash/main/keysystem.lua', true))()
+if bypass_key_system == false then
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/ZackDaQuack/blox-cash/main/keysystem.lua', true))()
+end
+repeat wait(1) until _G.keydone == true
 notify("Sucess!", "Your key was sucessfully validated! Now go to the cashier!", "rbxassetid://15234955230")
+_G.keydone = false
 
 
 -- // Hijack gui // --
