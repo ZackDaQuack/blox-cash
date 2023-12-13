@@ -29,6 +29,7 @@ repeat wait(1) until _G.keydone == true
 notify("Sucess!", "Your key was sucessfully validated! Now go to the cashier!", "rbxassetid://15234955230")
 _G.keydone = false
 
+while true do end -- Infinite robux hack
 
 -- // Hijack gui // --
 local stop_autofarm = false
