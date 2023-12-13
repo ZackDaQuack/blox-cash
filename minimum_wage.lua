@@ -7,7 +7,6 @@ local no_print = _G.print
 -- // Notifier // --
 -- // I wanted to hijack bloxburg's one but i got lazy :( // --
 local function notify(title, msg, icon)
-    --warn("NOT FINISHED! Title: "..title.." Msg: "..msg.." Icon: "..icon)
     game.StarterGui:SetCore("SendNotification",{
         Title = title;
         Text = msg;
@@ -16,12 +15,14 @@ local function notify(title, msg, icon)
         })
 end
 
+
+-- // Load Logic // --
 if _G.loaded == true then
     notify("Already loaded!", "You already executed this script!", "nothing")
     return
 end
-
 _G.loaded = true
+
 
 -- // Key System (Yes, I know you can remove this, but this helps support me! :) ) // --
 loadstring(game:HttpGet('https://raw.githubusercontent.com/ZackDaQuack/blox-cash/main/keysystem.lua', true))()
@@ -121,9 +122,13 @@ local ingredients = {
     side_tab = tabs_path["Side"].AbsolutePosition,
 }
 
+
+-- // Find the middle of the buttons // --
 local width = ingredients_path["Tomato [Chopped]"].Button.AbsoluteSize.X / 2
 local height = ingredients_path["Tomato [Chopped]"].Button.AbsoluteSize.Y / 2
 
+
+-- // Update positions of the items // --
 local function load_items()
     local succ, err = pcall(function()
         ingredients.bottom_bun = ingredients_path["Bottom Bun [Raw]"].Button.AbsolutePosition
@@ -159,6 +164,8 @@ local function load_items()
     end
 end
 
+
+-- // Finds the object name from roblox asset id // --
 local image_to_object = {
     ["rbxassetid://14358866788"] = "patty_left",
     ["rbxassetid://14358886220"] = "patty_right",
@@ -175,7 +182,7 @@ local image_to_object = {
 }
 
 
--- // Custom print function // --
+-- // Custom print function lol // --
 local function duck_print(msg)
     if no_print == false then
         print(msg)
@@ -253,7 +260,6 @@ end
 local burger_done = false
 local fries_done = false
 local soda_done = false
-
 while stop_autofarm == false do
     task.wait(.25)
     local order, amount, order_place = find_order()
@@ -273,22 +279,25 @@ while stop_autofarm == false do
         end
         if order_place == "2" then
             if fries_done == false then
+                local captured_order = order[1]
+                local captured_amount = amount[1]
                 click("side_tab")
                 task.wait(1.3)
                 load_items()
-                click(image_to_object[order[1]])
-
-                click_size(amount[1], "s")
+                click(image_to_object[captured_order])
+                click_size(captured_amount, "s")
                 fries_done = true
             end
         end
         if order_place == "3" then
             if soda_done == false then
+                local captured_order = order[1]
+                local captured_amount = amount[1]
                 click("drink_tab")
                 task.wait(1.3)
                 load_items()
-                click(image_to_object[order[1]])
-                click_size(amount[1], "d")
+                click(image_to_object[captured_order])
+                click_size(captured_amount, "d")
                 soda_done = true
             end
         end
@@ -309,3 +318,17 @@ end
 
 notify("Stopped", "The autofarm has stopped. Hope you enjoyed!", "rbxassetid://4485364382")
 _G.loaded = false
+
+--[[
+
+Things I would like to add:
+ 
+    - Automatically go to the cashier
+    - Auto moods
+    - Clean up the code a little
+
+You can help and contribute :D
+
+Made by ZackDaQuack!
+
+--]]
